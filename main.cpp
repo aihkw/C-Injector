@@ -29,8 +29,8 @@ int main()
 {
 	DWORD procId = NULL;
 	char dllPath[MAX_PATH];
-	const char* dllName = "DMM.dll"; // Enter your DLL file name
-	const char* windowTitle = "Untitled - Paint"; // Enter your program title
+	const char* dllName = "Injector.dll";
+	const char* windowTitle = "Untitled - Paint";
 
 	if (!fileExists(dllName))
 	{
@@ -59,7 +59,7 @@ int main()
 	{
 		error("VirtualAllocEx", "Failed");
 	}
-	if (!WriteProcessMemory(H_proc, nullptr, dllPath, MAX_PATH, nullptr))
+	if (!WriteProcessMemory(H_proc, allocatedMemory, dllPath, MAX_PATH, nullptr))
 	{
 		error("WriteProcessMemory", "Failed");
 	}
